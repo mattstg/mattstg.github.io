@@ -22,7 +22,7 @@ Every figure below is also on the linked pages. Contact: mattstger@gmail.com · 
 - [Pansimula](https://mattstg.github.io/work/pansimula/): Galactic Thunderdome (Steam, 2024) engine architecture
 - [Legends of Learning](https://mattstg.github.io/work/legends-of-learning/): five classroom games
 - [Teaching](https://mattstg.github.io/work/teaching/): ISI, Concordia, LCI
-- [About](https://mattstg.github.io/about/): who Matthew is, what role he wants, contact
+- [About](https://mattstg.github.io/about/): who Matthew is, the role Matthew wants, contact
 - [Resume (PDF)](https://mattstg.github.io/resume/Matthew-St-Germain-Resume.pdf)
 
 ## Work history

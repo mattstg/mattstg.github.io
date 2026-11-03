@@ -23,15 +23,15 @@
 <nav class="crumbs" aria-label="Breadcrumb"><a href="/work/">Work</a><span class="sep">/</span><span aria-current="page">Storycraft</span><button type="button" class="copylink" title="Copy link to this page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg><span class="lbl">Copy link</span></button></nav>
 
 <h1>Storycraft</h1>
-<p class="lede">I owned the game client of Storycraft, a live-ops iOS game built on worlds its players make, shipping
-every week while the team doubled from about 4 to 8.</p>
+<p class="lede">I owned the game client of Storycraft, a free-to-play online multiplayer iOS game built on worlds its
+players make, shipping every week while the team doubled from about 4 to 8.</p>
 
 <dl class="spec">
   <dt>Role</dt><dd>Senior Unity Developer; owner of the game client</dd>
   <dt>When</dt><dd>Aug 2025 – Oct 2026</dd>
   <dt>Where</dt><dd>Montreal (remote)</dd>
-  <dt>Platform</dt><dd>iOS, weekly releases</dd>
-  <dt>Stack</dt><dd>Unity, C#, App UI, Sentry, BigQuery, Amplitude, AppsFlyer, Claude Code, MCP</dd>
+  <dt>Platform</dt><dd>iOS, free-to-play online multiplayer, weekly releases</dd>
+  <dt>Stack</dt><dd>Unity, C#, App UI, WebSockets, Sentry, BigQuery, Amplitude, AppsFlyer, Claude Code, MCP</dd>
 </dl>
 
 <div class="metrics">
@@ -54,7 +54,7 @@ every week while the team doubled from about 4 to 8.</p>
   <li class="plain"><span class="t">Weekly release pipeline</span><span class="d">Unity batch build → Xcode archive → TestFlight, with debug symbols sent to Sentry. A headless Claude drafts release notes, the master list and the test plan from the commits.</span></li>
   <li class="plain"><span class="t">Monitoring</span><span class="d">Crash, release, regression and log dashboards; Sentry and Jira data piped into BigQuery; Discord alerts. An agent can also monitor players overnight, catch issues before anyone reports them, and draft a task list for review before it goes to Jira.</span></li>
   <li class="plain"><span class="t">Agent guardrails</span><span class="d">Claude Code hooks that compile-check every C# edit and block error dialogs, coding standards and tiered agent docs, and a multi-pass code review with blast-radius analysis.</span></li>
-  <li class="plain"><span class="t">Network resilience</span><span class="d">Server-sent event streaming and WebSocket reconnects, tested by automated chaos-monkey simulations that inject network failures.</span></li>
+  <li class="plain"><span class="t">Online multiplayer and network resilience</span><span class="d">Every feature had to work online: players visit each other's worlds and chat there, mostly over WebSockets. Server-sent event streaming and WebSocket reconnects were tested by automated chaos-monkey simulations that inject network failures.</span></li>
 </ul>
 
 </div></main>
