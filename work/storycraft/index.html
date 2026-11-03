@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Storycraft · Matthew St. Germain</title>
+<meta name="description" content="Owner of the Storycraft iOS game client: crash rate, overnight agents, multi-editor runner and more.">
+<link rel="canonical" href="https://mattstg.github.io/work/storycraft/">
+<meta property="og:title" content="Storycraft · Matthew St. Germain">
+<meta property="og:description" content="Owner of the Storycraft iOS game client: crash rate, overnight agents, multi-editor runner and more.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mattstg.github.io/work/storycraft/">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="Plain-text summary for AI readers">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+<a class="brand" href="/">Matthew St. Germain</a>
+<nav aria-label="Main"><ul><li><a href="/">Home</a></li><li><a href="/work/" aria-current="page">Work</a></li><li><a href="/about/">About</a></li><li><a href="/resume/Matthew-St-Germain-Resume.pdf">Resume (PDF)</a></li></ul></nav>
+</div></header>
+<main><div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/work/">Work</a><span class="sep">/</span><span aria-current="page">Storycraft</span><button type="button" class="copylink" title="Copy link to this page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg><span class="lbl">Copy link</span></button></nav>
+
+<h1>Storycraft</h1>
+<p class="lede">I owned the game client of Storycraft, a live-ops iOS game built on worlds its players make, shipping
+every week while the team doubled from about 4 to 8.</p>
+
+<dl class="spec">
+  <dt>Role</dt><dd>Senior Unity Developer; owner of the game client</dd>
+  <dt>When</dt><dd>Aug 2025 – Oct 2026</dd>
+  <dt>Where</dt><dd>Montreal (remote)</dd>
+  <dt>Platform</dt><dd>iOS, weekly releases</dd>
+  <dt>Stack</dt><dd>Unity, C#, App UI, Sentry, BigQuery, Amplitude, AppsFlyer, Claude Code, MCP</dd>
+</dl>
+
+<div class="metrics">
+  <div class="metric"><span class="fig"><span class="from">5.5% →</span> 1.5%</span><span class="what">Improved the client I inherited, cutting sessions that end in a crash by 73%.</span></div>
+  <div class="metric"><span class="fig"><span class="from">runs unattended up to</span> 12 h</span><span class="what">A framework that coordinates agents overnight: managing resources, working through task queues, testing on devices.</span></div>
+  <div class="metric"><span class="fig"><span class="from">8–16 h →</span> ~4 h</span><span class="what">Reduced the developer-hours of testing needed before each weekly release.</span></div>
+  <div class="metric"><span class="fig">~40%</span><span class="what">Of the client team's tracked runtime C# additions, about twice the next-largest contributor.</span></div>
+</div>
+
+<h2>Achievements, by impact</h2>
+<ul class="worklist">
+  <li><a class="row" href="/work/storycraft/crash-rate/"><span class="t">Cutting the crash rate by 73%</span>
+    <span class="d">A per-launch crash census and memory tooling first, then memory management, server-side image processing and async world loading.</span><span class="k">5.5% → 1.5%</span></a></li>
+  <li><a class="row" href="/work/storycraft/overnight-test-runner/"><span class="t">Overnight test runner</span>
+    <span class="d">Device tests whose plans update when the game changes, and agents that fix what fails and queue the fixes for review.</span><span class="k">up to 12 h unattended</span></a></li>
+  <li><a class="row" href="/work/storycraft/multi-editor-runner/"><span class="t">Multi-editor runner</span>
+    <span class="d">Three Unity editors per developer, each with its own agent, environment and backend, with a task queue, a resource manager and a CLI bridge into the editor.</span><span class="k">3 editors / developer</span></a></li>
+  <li class="plain"><span class="t">Game features from design specs</span><span class="d">Many of the game's player-facing features: quests, currency and progression, leaderboards, player profiles, interior rooms, object manipulation, an announcement tool and plenty of UI screens.</span></li>
+  <li class="plain"><span class="t">Player telemetry and bug reports</span><span class="d">Every action a player takes is mapped and linked by id to the backend transactions behind it, alongside Amplitude tracking for conversion and player behaviour and AppsFlyer attribution the product team used for ad campaigns. A bug-report tool gathers it all from every source, so developers and AI debugging agents can piece together what happened.</span></li>
+  <li class="plain"><span class="t">Weekly release pipeline</span><span class="d">Unity batch build → Xcode archive → TestFlight, with debug symbols sent to Sentry. A headless Claude drafts release notes, the master list and the test plan from the commits.</span></li>
+  <li class="plain"><span class="t">Monitoring</span><span class="d">Crash, release, regression and log dashboards; Sentry and Jira data piped into BigQuery; Discord alerts. An agent can also monitor players overnight, catch issues before anyone reports them, and draft a task list for review before it goes to Jira.</span></li>
+  <li class="plain"><span class="t">Agent guardrails</span><span class="d">Claude Code hooks that compile-check every C# edit and block error dialogs, coding standards and tiered agent docs, and a multi-pass code review with blast-radius analysis.</span></li>
+  <li class="plain"><span class="t">Network resilience</span><span class="d">Server-sent event streaming and WebSocket reconnects, tested by automated chaos-monkey simulations that inject network failures.</span></li>
+</ul>
+
+</div></main>
+<footer><div class="wrap">
+<span>Montreal · open to remote roles with US teams</span>
+<span><a href="mailto:mattstger@gmail.com">mattstger@gmail.com</a> · <a href="https://www.linkedin.com/in/matthew-st-germain-10368bba/">LinkedIn</a> · <a href="/llms.txt">llms.txt</a></span>
+</div></footer>
+<script>
+document.querySelectorAll('.copylink').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var url = document.querySelector('link[rel=canonical]').href, lbl = b.querySelector('.lbl');
+    function done() {
+      b.classList.add('done'); lbl.textContent = 'Copied';
+      setTimeout(function () { b.classList.remove('done'); lbl.textContent = 'Copy link'; }, 1600);
+    }
+    function fallback() {
+      var t = document.createElement('textarea'); t.value = url; document.body.appendChild(t);
+      t.select(); try { document.execCommand('copy'); } catch (e) {} t.remove(); done();
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(url).then(done, fallback); else fallback();
+  });
+});
+</script>
+</body>
+</html>

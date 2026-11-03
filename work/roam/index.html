@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Roam · Matthew St. Germain</title>
+<meta name="description" content="Core engine of an iPhone game where AI builds playable 3D games through tools.">
+<link rel="canonical" href="https://mattstg.github.io/work/roam/">
+<meta property="og:title" content="Roam · Matthew St. Germain">
+<meta property="og:description" content="Core engine of an iPhone game where AI builds playable 3D games through tools.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mattstg.github.io/work/roam/">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="Plain-text summary for AI readers">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+<a class="brand" href="/">Matthew St. Germain</a>
+<nav aria-label="Main"><ul><li><a href="/">Home</a></li><li><a href="/work/" aria-current="page">Work</a></li><li><a href="/about/">About</a></li><li><a href="/resume/Matthew-St-Germain-Resume.pdf">Resume (PDF)</a></li></ul></nav>
+</div></header>
+<main><div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/work/">Work</a><span class="sep">/</span><span aria-current="page">Roam</span><button type="button" class="copylink" title="Copy link to this page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg><span class="lbl">Copy link</span></button></nav>
+
+<h1>Roam</h1>
+<p class="lede">I designed and built the core of a Unity engine on iPhone that AI could drive: first turning a
+player's prompts into a complete, playable 3D game, then editing that game prompt by prompt while they played.</p>
+
+<dl class="spec">
+  <dt>Role</dt><dd>Client Lead (Unity/AI engine)</dd>
+  <dt>When</dt><dd>Feb 2025 – Sep 2025</dd>
+  <dt>Where</dt><dd>Remote, for a US company</dd>
+  <dt>Platform</dt><dd>iOS</dd>
+  <dt>Stack</dt><dd>Unity, C#, C# reflection, UniTask, Odin, LLMs, vector databases, WebSockets, wave function collapse</dd>
+</dl>
+
+<h2>The constraint</h2>
+<p>iOS allows no code generated at runtime, so the AI could never write the game's code. Everything it did had to
+go through systems built ahead of time, and those systems had to cover whatever a player might ask for.</p>
+
+<h2>Achievements, by impact</h2>
+<ul class="worklist">
+  <li class="plain"><span class="t">A reflection engine the AI can edit anything through</span><span class="d">The AI ran on a separate service layer and had to control the game the way a developer controls an editor: material colours, shaders, sounds, any variable on any script. Writing a function for each would never end, so I built a reflection engine with a contract for the AI. A player says "make this ball red" and it happens, with no custom "change colour" function. One line of code hands any marked-up object to the AI to fill in, with attributes setting value ranges and intent.</span></li>
+  <li class="plain"><span class="t">Scripts the AI understands without reading code</span><span class="d">An AI can't tell what a variable does without reading the code, which is slow and expensive, or what "high damage" means in numbers. Every modular script had its variables, behaviours and sensible ranges documented in a vector database. "I want the enemies to move fast" finds the right script, the right variables and how far to change them. Costs went down and responses got faster, and smaller, cheaper models could do the job.</span></li>
+  <li class="plain"><span class="t">The codex</span><span class="d">Everything the player said was sorted into codex books: enemies, objectives, player abilities, theme. Each agent read only the books it needed. When the game was generated, the codex became the input to procedural systems, so games were built fast and accurately instead of by an LLM writing code.</span></li>
+  <li class="plain"><span class="t">Maps the AI can reason about</span><span class="d">Maps came from wave function collapse, with hand-made modules. Each module's regions were described in vector space, so the AI could set the generator's balances and place things with logic like "snipers go on high ground". The same system made platformers, city maps and dungeons.</span></li>
+  <li class="plain"><span class="t">Editing a game in place</span><span class="d">Players could place and manipulate objects (size, position, grid, selection), or select an area and ask the AI to change it: "add trees here", "make these enemies smaller". Every action was a command exposed to a hierarchy of agents working in parallel.</span></li>
+  <li class="plain"><span class="t">Enemies from modular parts</span><span class="d">Enemies and other assets were assembled from modular behaviour components, so new combinations gave new behaviour without new code.</span></li>
+  <li class="plain"><span class="t">Asset reuse through vector databases</span><span class="d">Every generated 3D model was stored in a vector database, so later games reused earlier assets instead of generating them again: about $1 per generated asset, against nothing for a reused one.</span></li>
+  <li class="plain"><span class="t">Tools to see what the AI was doing</span><span class="d">Odin editor tools to watch traffic between the game and the AI service, track token use and speed, and mock iOS locally. A debugger with flagged logs, sent over WebSocket so they can be read in a secret window on an iOS build.</span></li>
+</ul>
+
+</div></main>
+<footer><div class="wrap">
+<span>Montreal · open to remote roles with US teams</span>
+<span><a href="mailto:mattstger@gmail.com">mattstger@gmail.com</a> · <a href="https://www.linkedin.com/in/matthew-st-germain-10368bba/">LinkedIn</a> · <a href="/llms.txt">llms.txt</a></span>
+</div></footer>
+<script>
+document.querySelectorAll('.copylink').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var url = document.querySelector('link[rel=canonical]').href, lbl = b.querySelector('.lbl');
+    function done() {
+      b.classList.add('done'); lbl.textContent = 'Copied';
+      setTimeout(function () { b.classList.remove('done'); lbl.textContent = 'Copy link'; }, 1600);
+    }
+    function fallback() {
+      var t = document.createElement('textarea'); t.value = url; document.body.appendChild(t);
+      t.select(); try { document.execCommand('copy'); } catch (e) {} t.remove(); done();
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(url).then(done, fallback); else fallback();
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>About · Matthew St. Germain</title>
+<meta name="description" content="Who Matthew St. Germain is, the role he's looking for, and how to reach him.">
+<link rel="canonical" href="https://mattstg.github.io/about/">
+<meta property="og:title" content="About · Matthew St. Germain">
+<meta property="og:description" content="Who Matthew St. Germain is, the role he's looking for, and how to reach him.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mattstg.github.io/about/">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="Plain-text summary for AI readers">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+<a class="brand" href="/">Matthew St. Germain</a>
+<nav aria-label="Main"><ul><li><a href="/">Home</a></li><li><a href="/work/">Work</a></li><li><a href="/about/" aria-current="page">About</a></li><li><a href="/resume/Matthew-St-Germain-Resume.pdf">Resume (PDF)</a></li></ul></nav>
+</div></header>
+<main><div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><span aria-current="page">About</span><button type="button" class="copylink" title="Copy link to this page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg><span class="lbl">Copy link</span></button></nav>
+
+<div class="intro">
+  <img class="portrait" src="/assets/img/matt.png" width="402" height="350" alt="Matthew St. Germain">
+  <div>
+    <h1>About me</h1>
+    <p class="lede">I'm Matt, a game developer in Montreal. At heart I'm an engine and tools developer: I like
+    building the systems that make everyone else on a team faster.</p>
+  </div>
+</div>
+
+<p>I picked up Unity early, years before schools taught it, which is how I ended up teaching it and then running a
+game development program at a private college. I loved teaching, and it made me good at explaining systems and bringing new people
+up to speed.</p>
+<p>For the last two years I've been building tools for a new kind of teammate: AI agents. I like that work for the
+same reason I like tools: it takes the tedious parts off developers' hands so they can spend their time on the
+game.</p>
+
+<h2>What I'm looking for</h2>
+<p>A senior Unity, game tools or AI tooling role on a game team. I'm in Montreal and open to remote roles with US
+teams.</p>
+
+<h2>Education</h2>
+<p>BEng in Software Engineering, Concordia University, 2015.</p>
+
+<h2>Contact</h2>
+<p>Email: <a href="mailto:mattstger@gmail.com">mattstger@gmail.com</a><br>LinkedIn: <a href="https://www.linkedin.com/in/matthew-st-germain-10368bba/">matthew-st-germain-10368bba</a></p>
+
+</div></main>
+<footer><div class="wrap">
+<span>Montreal · open to remote roles with US teams</span>
+<span><a href="mailto:mattstger@gmail.com">mattstger@gmail.com</a> · <a href="https://www.linkedin.com/in/matthew-st-germain-10368bba/">LinkedIn</a> · <a href="/llms.txt">llms.txt</a></span>
+</div></footer>
+<script>
+document.querySelectorAll('.copylink').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var url = document.querySelector('link[rel=canonical]').href, lbl = b.querySelector('.lbl');
+    function done() {
+      b.classList.add('done'); lbl.textContent = 'Copied';
+      setTimeout(function () { b.classList.remove('done'); lbl.textContent = 'Copy link'; }, 1600);
+    }
+    function fallback() {
+      var t = document.createElement('textarea'); t.value = url; document.body.appendChild(t);
+      t.select(); try { document.execCommand('copy'); } catch (e) {} t.remove(); done();
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(url).then(done, fallback); else fallback();
+  });
+});
+</script>
+</body>
+</html>

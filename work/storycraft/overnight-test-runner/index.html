@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Overnight test runner · Matthew St. Germain</title>
+<meta name="description" content="Agents that run unattended for up to 12 hours overnight: device tests, fixes and a morning review plan.">
+<link rel="canonical" href="https://mattstg.github.io/work/storycraft/overnight-test-runner/">
+<meta property="og:title" content="Overnight test runner · Matthew St. Germain">
+<meta property="og:description" content="Agents that run unattended for up to 12 hours overnight: device tests, fixes and a morning review plan.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mattstg.github.io/work/storycraft/overnight-test-runner/">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="Plain-text summary for AI readers">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+<a class="brand" href="/">Matthew St. Germain</a>
+<nav aria-label="Main"><ul><li><a href="/">Home</a></li><li><a href="/work/" aria-current="page">Work</a></li><li><a href="/about/">About</a></li><li><a href="/resume/Matthew-St-Germain-Resume.pdf">Resume (PDF)</a></li></ul></nav>
+</div></header>
+<main><div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/work/">Work</a><span class="sep">/</span><a href="/work/storycraft/">Storycraft</a><span class="sep">/</span><span aria-current="page">Overnight test runner</span><button type="button" class="copylink" title="Copy link to this page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg><span class="lbl">Copy link</span></button></nav>
+
+<h1>Overnight test runner</h1>
+<p class="lede">I start it around 8 pm and it runs unattended until somewhere between 3 and 8 am: testing the game on
+real iPhones, fixing what fails, working through tickets, and leaving fixes and a review plan for the morning. That's
+about a day of developer work per night, on a fixed Claude Max plan, with tokens left over for my own week.</p>
+
+<dl class="spec">
+  <dt>Role</dt><dd>Designed and built it</dd>
+  <dt>When</dt><dd>2025 – 2026</dd>
+  <dt>Stack</dt><dd>Claude Code, Unity, iOS dev builds, Jira and Notion, running on the <a href="/work/storycraft/multi-editor-runner/">multi-editor runner</a></dd>
+  <dt>Result</dt><dd class="result">Up to 12 hours unattended, about a day of developer work per night, on a fixed Claude Max plan; release testing from 8–16 to ~4 developer-hours</dd>
+</dl>
+
+<h2>The harness</h2>
+<p>Agents are good for an hour or two before something stalls them. The work that matters is the harness that keeps
+them going all night without anyone stepping in:</p>
+<ul>
+  <li><b>Resources.</b> Three Unity editors, each with its own local backend in Docker, use a lot of RAM. Agents follow protocols for it: sharing an environment, switching to staging, and taking turns on rebuilds, with CPU and RAM managed so nothing starves or crashes the machine.</li>
+  <li><b>Device builds.</b> Builds go to plugged-in iPhones and come back as test results, without anyone touching a cable or a prompt.</li>
+  <li><b>Branches.</b> Each task gets its own branch; finished work lands on an integration branch with a review plan for the morning.</li>
+  <li><b>Review passes.</b> Changes are reviewed by agents before they reach a person.</li>
+  <li><b>Agent roles and handoffs.</b> Each agent has one role: researcher, ticket writer, coordinator, worker, tester or reviewer. Work passes between them with a written handoff, so no agent's context bloats over a long run, and they're still sharp at 5 am.</li>
+</ul>
+
+<h2>Tests that look after themselves</h2>
+<ul>
+  <li><b>Test plans written by agents.</b> When commits change the first-time user experience or the core flow, agents update the affected test plans to match, so the tests don't rot as the game changes.</li>
+  <li><b>Device testing.</b> One command takes a plugged-in iPhone to a test-ready dev build that agents can control.</li>
+  <li><b>Scripts first, AI on failure.</b> The tests are Python scripts that play through the full first-time experience in the editor or on the device, with no per-step latency and no tokens spent. When a step fails, an agent takes over: it takes screenshots, compares game state and checks git to decide whether the flow changed on purpose or it's a bug. Then it repairs the script for next time, or files a ticket.</li>
+  <li><b>A harness that improves itself.</b> Problems in the test harness itself are mostly fixed automatically, by an agent that collects feedback from every run.</li>
+  <li><b>Play-session reports.</b> Every run is recorded step by step into one readable HTML report.</li>
+</ul>
+
+<h2>Overnight mode</h2>
+<p>Overnight, a coordinator runs the test plans, then hands what failed, plus a queue of tickets from Jira or Notion,
+to agents across the three editors of the multi-editor runner. In the morning there's a report and fixes waiting
+for review.</p>
+<p>The agents run under a contract they can't change:</p>
+<ul>
+  <li>No access to production.</li>
+  <li>No merges into shared branches; everything goes to review.</li>
+  <li>No weakening tests to make them pass.</li>
+  <li>A hard stop at a set time, and every decision logged.</li>
+</ul>
+<p>Hooks check that every C# edit compiles and block the error dialogs that would stall an unattended editor.</p>
+
+<div class="metrics">
+  <div class="metric"><span class="fig"><span class="from">up to</span> 12 h</span><span class="what">Unattended, usually from 8 pm until 3–8 am, doing about a day of developer work. Best nights cleared around 14 tickets, or built entire features end to end: screens, backend and client.</span></div>
+  <div class="metric"><span class="fig"><span class="from">8–16 h →</span> ~4 h</span><span class="what">Pre-release testing each week: from 2–4 developers for about 4 hours, to an overnight run and one developer's morning review.</span></div>
+</div>
+
+</div></main>
+<footer><div class="wrap">
+<span>Montreal · open to remote roles with US teams</span>
+<span><a href="mailto:mattstger@gmail.com">mattstger@gmail.com</a> · <a href="https://www.linkedin.com/in/matthew-st-germain-10368bba/">LinkedIn</a> · <a href="/llms.txt">llms.txt</a></span>
+</div></footer>
+<script>
+document.querySelectorAll('.copylink').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var url = document.querySelector('link[rel=canonical]').href, lbl = b.querySelector('.lbl');
+    function done() {
+      b.classList.add('done'); lbl.textContent = 'Copied';
+      setTimeout(function () { b.classList.remove('done'); lbl.textContent = 'Copy link'; }, 1600);
+    }
+    function fallback() {
+      var t = document.createElement('textarea'); t.value = url; document.body.appendChild(t);
+      t.select(); try { document.execCommand('copy'); } catch (e) {} t.remove(); done();
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(url).then(done, fallback); else fallback();
+  });
+});
+</script>
+</body>
+</html>

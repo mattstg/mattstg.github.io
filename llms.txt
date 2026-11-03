@@ -1,0 +1,40 @@
+# Matthew St. Germain
+
+> Senior Unity engineer and client lead in Montreal, open to remote roles with US teams. Twelve years shipping games and engine tooling; for the last two, building multi-agent AI systems that test, fix and ship games.
+
+Every figure below is also on the linked pages. Contact: mattstger@gmail.com · https://www.linkedin.com/in/matthew-st-germain-10368bba/
+
+## Key results
+- Storycraft (live-ops iOS game, Aug 2025 – Oct 2026, Senior Unity Developer, owned the game client): crash rate cut 73%, from 5.5% to 1.5% of sessions. Also built many of the game's player-facing features from design specs (quests, currency and progression, leaderboards, player profiles, interior rooms, object manipulation, an announcement tool, UI screens).
+- An overnight test runner: agents run unattended for up to 12 hours (usually 8 pm to 3–8 am) and do about a day of developer work per night (best nights about 14 tickets) on a fixed Claude Max plan, under hard limits: no production access, no merges to shared branches.
+- A multi-editor runner: 3 Unity editors per developer, each with its own agent, environment and backend, a task queue, a resource manager and a CLI bridge into the editor.
+- Weekly pre-release testing cut from 8–16 developer-hours (2–4 developers, about 4 hours) to about 4 (one developer reviewing an overnight run).
+- About 40% of the client team's tracked runtime C# additions, about twice the next-largest contributor.
+
+## Pages
+- [Home](https://mattstg.github.io/): summary, results and work history
+- [Work](https://mattstg.github.io/work/): every job with top achievements, games shipped, earlier roles
+- [Storycraft](https://mattstg.github.io/work/storycraft/): every Storycraft achievement, by impact
+- [Cutting the crash rate by 73%](https://mattstg.github.io/work/storycraft/crash-rate/): crash census, memory tooling, server-side images, async world loading
+- [Overnight test runner](https://mattstg.github.io/work/storycraft/overnight-test-runner/): agent-written device test plans, overnight coordinator and its contract
+- [Multi-editor runner](https://mattstg.github.io/work/storycraft/multi-editor-runner/): 3 editors per developer, task queue, resource manager, CLI bridge into Unity
+- [Roam](https://mattstg.github.io/work/roam/): engine where AI builds playable 3D iPhone games through tools
+- [Pansimula](https://mattstg.github.io/work/pansimula/): Galactic Thunderdome (Steam, 2024) engine architecture
+- [Legends of Learning](https://mattstg.github.io/work/legends-of-learning/): five classroom games
+- [Teaching](https://mattstg.github.io/work/teaching/): ISI, Concordia, LCI
+- [About](https://mattstg.github.io/about/): who Matthew is, what role he wants, contact
+- [Resume (PDF)](https://mattstg.github.io/resume/Matthew-St-Germain-Resume.pdf)
+
+## Work history
+- 2025 – 2026 · Storycraft · Senior Unity Developer (owned the game client)
+- 2025 · Roam (US, remote) · Client Lead (Unity/AI engine): engine where AI builds playable 3D iPhone games through tools, since iOS forbids runtime code generation
+- 2016 – 2024 · Pansimula (own studio) · Founder / Lead Developer: Galactic Thunderdome, 600+ destructible objects at 60 fps on Steam Deck
+- 2017 – 2022 · Legends of Learning · Game Developer (contract): five educational games, Educagent 530,000+ plays
+- 2018 – 2023 · ISI, private college in Montreal · Head of English Game Development Program
+- Earlier: Playtika (World Series of Poker), Ludia (Family Feud), CAE, VIA Rail
+
+## Skills
+Unity, C#, C++, Python, TypeScript; software architecture and design patterns; Claude Code, multi-agent orchestration, MCP, agent tooling and editor bridges; iOS, Android, Xcode, TestFlight; Sentry, BigQuery, Amplitude, AppsFlyer; multithreading, async/await, Job System, compute shaders, ECS, IL2CPP; CI/CD, Docker, automated and unit testing; Steamworks.
+
+## Note
+No Storycraft code or internal data is published. The pages describe systems Matthew designed and built, and their results.

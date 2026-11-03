@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mattstg.github.io/sitemap.xml

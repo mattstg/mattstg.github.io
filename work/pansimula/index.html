@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pansimula · Matthew St. Germain</title>
+<meta name="description" content="Galactic Thunderdome on Steam: destruction engine, job queue, modular weapons.">
+<link rel="canonical" href="https://mattstg.github.io/work/pansimula/">
+<meta property="og:title" content="Pansimula · Matthew St. Germain">
+<meta property="og:description" content="Galactic Thunderdome on Steam: destruction engine, job queue, modular weapons.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mattstg.github.io/work/pansimula/">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="Plain-text summary for AI readers">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+<a class="brand" href="/">Matthew St. Germain</a>
+<nav aria-label="Main"><ul><li><a href="/">Home</a></li><li><a href="/work/" aria-current="page">Work</a></li><li><a href="/about/">About</a></li><li><a href="/resume/Matthew-St-Germain-Resume.pdf">Resume (PDF)</a></li></ul></nav>
+</div></header>
+<main><div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/work/">Work</a><span class="sep">/</span><span aria-current="page">Pansimula</span><button type="button" class="copylink" title="Copy link to this page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg><span class="lbl">Copy link</span></button></nav>
+
+<h1>Pansimula</h1>
+<p class="lede">My own studio, from 2016 to 2024. Its main title is <i>Galactic Thunderdome</i>, a 2D physics
+brawler I led and self-published on Steam in 2024; I architected its engine.</p>
+
+<dl class="spec">
+  <dt>Role</dt><dd>Founder / Lead Developer</dd>
+  <dt>When</dt><dd>2016 – 2024</dd>
+  <dt>Platform</dt><dd>PC and Steam Deck (Steam)</dd>
+  <dt>Stack</dt><dd>Unity, C#, Job System, compute shaders, Steamworks</dd>
+</dl>
+
+<div class="shot gtd"><img src="/assets/img/galactic-thunderdome.png" width="288" height="132" alt="Galactic Thunderdome key art" loading="lazy"></div>
+<p><a href="https://store.steampowered.com/app/1219800/Galactic_Thunderdome/">Steam page</a> · <a href="https://www.youtube.com/watch?v=U4oUq-anmSk">Trailer</a> · <a href="https://www.youtube.com/shorts/eUh6hs99_iE">Character short</a></p>
+
+<div class="metrics">
+  <div class="metric"><span class="fig">600+ @ 60 fps</span><span class="what">Destructible physics objects on Steam Deck.</span></div>
+  <div class="metric"><span class="fig">&lt; 4 s</span><span class="what">To load a map of 4,000+ objects.</span></div>
+  <div class="metric"><span class="fig">80+ / 172</span><span class="what">Weapons assembled from reusable modules.</span></div>
+</div>
+
+<h2>Galactic Thunderdome: achievements, by impact</h2>
+<ul class="worklist">
+  <li class="plain"><span class="t">Level design without code</span><span class="d">A toolset of editor windows that let designers build whole levels without programming: the map, rock baking, item and enemy spawns, triggered events, linked zones, objectives and their balance, and which builds a map ships in. It's how the game got 40+ maps with several rule sets. The hardest mode, Gauntlet, got its own stage editor with validation and a test start at any stage. <a href="https://youtu.be/fkH7hM8M6PU">Watch the level tools</a>. <a href="https://youtu.be/sKf9gC50g4A">Watch the Gauntlet tool</a>.</span></li>
+  <li class="plain"><span class="t">Destruction engine</span><span class="d">Reshaping colliders at runtime is too expensive with dozens of objects breaking every frame, so fracture is Voronoi, baked in the editor, and the bake tool notices when a designer forgot to rebake. At runtime, pre-cached, forward-seeking fracture and pooled fragments keep memory steady around frame spikes. A baked trim pass hides rock edges covered by neighbours, saving about 5 ms of rendering with several hundred rocks. 600+ destructible objects at over 60 fps on Steam Deck.</span></li>
+  <li class="plain"><span class="t">Frame-budgeted job queue</span><span class="d">Generic actions run through a queue with a per-frame budget, split between the main thread and worker threads, and the budget grows in pause menus and other quiet moments. Pools prepare complex objects in stages and refill when nothing is happening. Maps of 4,000+ objects load in under 4 seconds.</span></li>
+  <li class="plain"><span class="t">Modular weapons</span><span class="d">80+ weapons assembled from 172 reusable modules: muzzle flash, reload, ammo, sounds, lights. Designers lay out each weapon's states in Unity's Animator; a baker turns that into data for a generic state machine, which calls each module's methods by state name through cached reflection. Developers build modules in isolation.</span></li>
+  <li class="plain"><span class="t">One-click release</span><span class="d">Checks every bake is current and every localization key exists in every language, sets the right compile flags for demo, Steam or recording builds, builds, and uploads to Steam. A setup tool configures other developers' machines. <a href="https://www.youtube.com/watch?v=WsOZP_Qyrtg">Watch the video</a>.</span></li>
+  <li class="plain"><span class="t">Game flow as a state machine</span><span class="d">Reworked years of managers calling each other into one top-level state machine, where each state says which managers run and when, and documented it for the team.</span></li>
+  <li class="plain"><span class="t">Quick test launcher</span><span class="d">Launch any map with any items and rules without playing through the game. The menu is built from the files on disk, so it grows with the content. <a href="https://youtu.be/LofEmv0DWJI">Watch the video</a>.</span></li>
+  <li class="plain"><span class="t">AI pathfinding tools</span><span class="d">An A* baker that builds node maps automatically, links doors to their buttons and supports danger weights and one-way paths, plus a live view of nodes, weights and AI paths for balancing. <a href="https://youtu.be/KIBt83d1I4E">Watch the baker</a>. <a href="https://youtu.be/bkz5CbdwFOs">Watch the live view</a>.</span></li>
+  <li class="plain"><span class="t">Localization in 10 languages</span><span class="d">A tool machine-translates all game text and imports it back so translators only polish, and another generates only the font glyphs the text uses, which matters most for Simplified Chinese.</span></li>
+  <li class="plain"><span class="t">Audio</span><span class="d">Made over 400 of the game's sounds in under 2 months alongside my main work, including procedural ones that scale with impact and damage. Rock-destruction sounds are merged and layered by size and how the rock breaks. An editor tool versions and balances the volume of 800+ sounds.</span></li>
+  <li class="plain"><span class="t">Reflection caching</span><span class="d">Cut reflection overhead from 60× to 1.2–1.6×.</span></li>
+</ul>
+
+<h2>Contract work</h2>
+<ul class="worklist">
+  <li class="plain"><span class="t">Automating a retiring developer's job</span><span class="d">A tool suite that automated the tasks of a developer who was retiring, so the work didn't leave with them.</span></li>
+  <li class="plain"><span class="t">Mailing-list repair</span><span class="d">A tool that repairs mailing lists to meet international postal addressing standards.</span></li>
+  <li class="plain"><span class="t">Technical translation</span><span class="d">Translated a school's programming course from French to English.</span></li>
+</ul>
+
+</div></main>
+<footer><div class="wrap">
+<span>Montreal · open to remote roles with US teams</span>
+<span><a href="mailto:mattstger@gmail.com">mattstger@gmail.com</a> · <a href="https://www.linkedin.com/in/matthew-st-germain-10368bba/">LinkedIn</a> · <a href="/llms.txt">llms.txt</a></span>
+</div></footer>
+<script>
+document.querySelectorAll('.copylink').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var url = document.querySelector('link[rel=canonical]').href, lbl = b.querySelector('.lbl');
+    function done() {
+      b.classList.add('done'); lbl.textContent = 'Copied';
+      setTimeout(function () { b.classList.remove('done'); lbl.textContent = 'Copy link'; }, 1600);
+    }
+    function fallback() {
+      var t = document.createElement('textarea'); t.value = url; document.body.appendChild(t);
+      t.select(); try { document.execCommand('copy'); } catch (e) {} t.remove(); done();
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(url).then(done, fallback); else fallback();
+  });
+});
+</script>
+</body>
+</html>

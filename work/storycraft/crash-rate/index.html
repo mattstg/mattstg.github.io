@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Cutting the crash rate by 73% · Matthew St. Germain</title>
+<meta name="description" content="How the Storycraft iOS crash rate went from 5.5% to 1.5% of sessions.">
+<link rel="canonical" href="https://mattstg.github.io/work/storycraft/crash-rate/">
+<meta property="og:title" content="Cutting the crash rate by 73% · Matthew St. Germain">
+<meta property="og:description" content="How the Storycraft iOS crash rate went from 5.5% to 1.5% of sessions.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mattstg.github.io/work/storycraft/crash-rate/">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="Plain-text summary for AI readers">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+<a class="brand" href="/">Matthew St. Germain</a>
+<nav aria-label="Main"><ul><li><a href="/">Home</a></li><li><a href="/work/" aria-current="page">Work</a></li><li><a href="/about/">About</a></li><li><a href="/resume/Matthew-St-Germain-Resume.pdf">Resume (PDF)</a></li></ul></nav>
+</div></header>
+<main><div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/work/">Work</a><span class="sep">/</span><a href="/work/storycraft/">Storycraft</a><span class="sep">/</span><span aria-current="page">Crash rate</span><button type="button" class="copylink" title="Copy link to this page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg><span class="lbl">Copy link</span></button></nav>
+
+<h1>Cutting the crash rate by 73%</h1>
+<p class="lede">Storycraft is a live-ops iOS game built on worlds its players make. When I took over the game client,
+5.5% of sessions ended in a crash. When I left, 1.5% did.</p>
+
+<dl class="spec">
+  <dt>Role</dt><dd>Owner of the game client; I built the tooling and the fixes below</dd>
+  <dt>When</dt><dd>Aug 2025 – Oct 2026</dd>
+  <dt>Platform</dt><dd>iOS, mostly iPhone 13 and 14 class devices</dd>
+  <dt>Stack</dt><dd>Unity, C#, Sentry, BigQuery, MetricKit, a CDN</dd>
+  <dt>Result</dt><dd class="result">5.5% → 1.5% of sessions crashing (crash-free sessions 94.5% → 98.5%)</dd>
+</dl>
+
+<h2>Why it crashed</h2>
+<p>Every world is built from images its players uploaded, often hundreds of unique ones per world. None of them can
+ship in the build, be packed into atlases or be compressed ahead of time, because they don't exist until a player
+makes them. On a typical iPhone that adds up fast.</p>
+<p>Two failures came out of that:</p>
+<ul>
+  <li><b>Out-of-memory kills.</b> iOS ends an app that uses too much memory, with no crash report from inside the app.</li>
+  <li><b>Watchdog terminations.</b> World loading ran on the main thread. A big world kept the app from responding long enough that iOS ended it.</li>
+</ul>
+<p>Neither shows up well in a normal crash reporter, which was part of the problem.</p>
+
+<h2>Measure first</h2>
+<p>Before changing anything I made the crashes countable, starting with written rules for what counts as a
+crash, a freeze and a memory kill.</p>
+<ol class="steps">
+  <li><b>Crash census.</b> A record kept for every launch that notes whether the previous session ended cleanly. That catches out-of-memory kills, which leave no report, plus a watchdog for stalls and Apple's MetricKit data.</li>
+  <li><b>Memory tooling.</b> What memory is made of and how it changes over a session, detection of iOS memory-pressure kills, and a low-RAM mode to reproduce them on a developer's phone.</li>
+  <li><b>Error capture and pipelines.</b> A Sentry wrapper with fingerprinting and boot-phase timing, Sentry data piped into BigQuery, and views by crash type, device tier and release.</li>
+  <li><b>Crash reports from players.</b> After a crash, the next launch uploads zipped traces and logs.</li>
+</ol>
+
+<h2>The fixes</h2>
+<ul>
+  <li><b>Memory management systems</b>, including a three-tier image cache with a ledger of what each image costs in memory.</li>
+  <li><b>Texture settings</b> fixed so images don't keep a second, CPU-side copy in memory.</li>
+  <li><b>Image processing moved to the server</b>, with processed images cached and served through a CDN, so the phone receives images ready to use.</li>
+  <li><b>Async, multithreaded world loading</b>, off the main thread, so iOS no longer sees the app as frozen.</li>
+  <li><b>A thermal and framerate governor</b> that lowers the framerate when the phone heats up.</li>
+</ul>
+
+<div class="callout"><p><b>Result:</b> crash rate down from 5.5% to 1.5% of sessions. Most out-of-memory kills and
+watchdog terminations are gone, on the same devices and with the same player-made worlds.</p></div>
+
+</div></main>
+<footer><div class="wrap">
+<span>Montreal · open to remote roles with US teams</span>
+<span><a href="mailto:mattstger@gmail.com">mattstger@gmail.com</a> · <a href="https://www.linkedin.com/in/matthew-st-germain-10368bba/">LinkedIn</a> · <a href="/llms.txt">llms.txt</a></span>
+</div></footer>
+<script>
+document.querySelectorAll('.copylink').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var url = document.querySelector('link[rel=canonical]').href, lbl = b.querySelector('.lbl');
+    function done() {
+      b.classList.add('done'); lbl.textContent = 'Copied';
+      setTimeout(function () { b.classList.remove('done'); lbl.textContent = 'Copy link'; }, 1600);
+    }
+    function fallback() {
+      var t = document.createElement('textarea'); t.value = url; document.body.appendChild(t);
+      t.select(); try { document.execCommand('copy'); } catch (e) {} t.remove(); done();
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(url).then(done, fallback); else fallback();
+  });
+});
+</script>
+</body>
+</html>
