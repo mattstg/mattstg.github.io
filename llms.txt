@@ -30,7 +30,7 @@ Every figure below is also on the linked pages. Contact: mattstger@gmail.com · 
 - 2025 – 2026 · Storycraft · Senior Unity Developer (owned the game client)
 - 2025 · Roam (US, remote) · Client Lead (Unity/AI engine): engine where AI builds playable 3D iPhone games through tools, since iOS forbids runtime code generation
 - 2016 – 2024 · Pansimula (own studio) · Founder / Lead Developer: Galactic Thunderdome, 600+ destructible objects at 60 fps on Steam Deck
-- 2017 – 2022 · Legends of Learning · Game Developer (contract): five educational games designed and built by Matthew (Grow Hop designed with the team); Educagent 530,000+ plays
+- 2017 – 2022 · Legends of Learning · Game Developer (contract): five educational games designed and built by Matthew; Educagent 530,000+ plays
 - 2018 – 2023 · ISI, private college in Montreal · Head of English Game Development Program
 - Earlier: Playtika (World Series of Poker), Ludia (Family Feud), CAE, VIA Rail
 
