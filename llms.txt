@@ -9,6 +9,7 @@ Every figure below is also on the linked pages. Contact: mattstger@gmail.com · 
 - An overnight test runner: agents run unattended for up to 12 hours (usually 8 pm to 3–8 am) and do about a day of developer work per night (best nights about 14 tickets) on a fixed Claude Max plan, under hard limits: no production access, no merges to shared branches.
 - A multi-editor runner: 3 Unity editors per developer, each with its own agent, environment and backend, a task queue, a resource manager and a CLI bridge into the editor.
 - Weekly pre-release testing cut from 8–16 developer-hours (2–4 developers, about 4 hours) to about 4 (one developer reviewing an overnight run).
+- Release Desk: headless Claude turns each weekly release's commits into release notes, a test plan and the affected CMS values; a few hours of separate prep tasks became a few minutes of review.
 - About 40% of the client team's tracked runtime C# additions, about twice the next-largest contributor.
 
 ## Pages
